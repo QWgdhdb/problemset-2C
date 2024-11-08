@@ -1,0 +1,80 @@
+import java.util.Scanner;
+public class DriverOrderedPair
+{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        OrderedPair a = new OrderedPair();
+        OrderedPair b = new OrderedPair(1.0, 2.0);
+
+        System.out.println("Default Pair: " + a.toString());
+        System.out.println("Custom Pair: " + b.toString());
+
+        System.out.println("Default Pair X: " + a.getX());
+        System.out.println("Default Pair Y: " + a.getY());
+        System.out.println("Custom Pair X: " + b.getX());
+        System.out.println("Custom Pair Y: " + b.getY());
+
+       
+        Formulas formulas = new Formulas();
+        
+        System.out.println("QUADRATIC FORMULA: Find the roots of ax^2 + bx + c. Enter a, b and c:");
+        System.out.print("a: ");
+        double aCoeff = input.nextDouble();
+        System.out.print("b: ");
+        double bCoeff = input.nextDouble();
+        System.out.print("c: ");
+        double cCoeff = input.nextDouble();
+        OrderedPair roots = formulas.findQuadraticRoots(aCoeff, bCoeff, cCoeff);
+        System.out.println("The solutions for " + aCoeff + "x^2 + " + bCoeff + "x + " + cCoeff + " are " + roots + ".");
+        
+        System.out.println("SLOPE FORMULA: Find the slope between points (x1,y1) and (x2,y2)");
+        System.out.print("x1: ");
+        double x1 = input.nextDouble();
+        System.out.print("y1: ");
+        double y1 = input.nextDouble();
+        System.out.print("x2: ");
+        double x2 = input.nextDouble();
+        System.out.print("y2: ");
+        double y2 = input.nextDouble();
+        OrderedPair pointA = new OrderedPair(x1, y1);
+        OrderedPair pointB = new OrderedPair(x2, y2);
+        double slope = formulas.findSlope(pointA, pointB);
+        System.out.println("A line between " + pointA + " and " + pointB + " has a slope of " + slope + ".");
+
+        // Midpoint Formula
+        System.out.println("MIDPOINT FORMULA: Find the midpoint between (x1,y1) and (x2,y2)");
+        OrderedPair midpoint = formulas.findMidpoint(pointA, pointB);
+        System.out.println("The midpoint between " + pointA + " and " + pointB + " is " + midpoint + ".");
+
+        // Sum of an Arithmetic Series
+        System.out.println("SUM OF AN ARITHMETIC SERIES");
+        System.out.print("Number of terms: ");
+        int k = input.nextInt();
+        System.out.print("Starts with: ");
+        double firstTerm = input.nextDouble();
+        System.out.print("Increases by: ");
+        double difference = input.nextDouble();
+        double arithmeticSum = formulas.findArithmeticSeriesSum(firstTerm, difference, k);
+        System.out.println("The sum of the first " + k + " terms of an arithmetic series that starts with " +
+                firstTerm + " and increases by " + difference + " is " + arithmeticSum + ".");
+
+        // Sum of a Geometric Series
+        System.out.println("SUM OF A GEOMETRIC SERIES");
+        System.out.print("Number of terms: ");
+        k = input.nextInt();
+        System.out.print("Starts with: ");
+        double start = input.nextDouble();
+        System.out.print("Rate of growth: ");
+        double ratio = input.nextDouble();
+        double geometricSum = formulas.findGeometricSeriesSum(start, ratio, k);
+        System.out.println("The sum of the first " + k + " terms of a finite geometric series that starts with " +
+                start + " and increases by a rate of " + ratio + " is " + geometricSum + ".");
+
+        // Die Roller
+        System.out.println("DIE ROLLER");
+        System.out.print("How many sides does your die have? ");
+        int sides = input.nextInt();
+        int roll = formulas.rollDie(sides);
+        System.out.println("Rolling a " + sides + "-sided die... you got a " + roll + "!");
+    }
+}
